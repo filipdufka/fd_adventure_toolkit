@@ -27,7 +27,6 @@ namespace FD.AdventureToolkit
                 if (coll.OverlapPoint(mousePosWS))
                 {
                     onClick.Invoke();
-                    Debug.Log("Click");
                 }
             }
             else
