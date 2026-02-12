@@ -1,0 +1,15 @@
+{
+  "name": "com.fd.adventure_toolkit",
+  "version": "1.0.0",
+  "displayName": "FD Adventure Toolkit",
+  "description": "Extensible Tools for Creating Point'n'Click Adventure Games and state games in general.",
+  "unity": "2021.3",
+  "keywords": [
+    "button",
+    "adventures"
+  ],
+  "author": {
+    "name": "Filip Dufka",
+    "url": "https://github.com/filipdufka/fd_adventure_toolkit.git"
+  }
+}
