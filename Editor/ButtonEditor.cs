@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEngine;
 
@@ -12,15 +14,18 @@ namespace FD.AdventureToolkit.Editor
             var sp = (Button)target;
             var coll = sp.GetComponent<Collider2D>();
 
+            GUI.color = Color.red;
             if (coll == null) {
-                GUI.color = Color.red;
+                
                 EditorGUILayout.LabelField("There must be Collider2D on this GameObject");
                 EditorGUILayout.Space();
-                GUI.color = Color.white;
             }
 
-            
+            GUI.color = Color.white;
+
             base.OnInspectorGUI();                       
         }
     }
 }
+
+#endif
