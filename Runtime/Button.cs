@@ -24,7 +24,7 @@ namespace FD.AdventureToolkit
             Collider2D coll = GetComponent<Collider2D>();
             if (coll != null)
             {
-                if (coll.OverlapPoint(mousePosWS))
+                if (coll.OverlapPoint(mousePosWS) && gameObject.activeInHierarchy)
                 {
                     onClick.Invoke();
                 }
