@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace FD.AdventureToolkit.Editor {
 
-    [CustomEditor(typeof(Button))]
+    [CustomEditor(typeof(Hover))]
     [CanEditMultipleObjects]
-    public class ButtonEditor : UnityEditor.Editor {
+    public class HoverEditor : UnityEditor.Editor {
         public override void OnInspectorGUI() {
-            var sp = (Button)target;
+            var sp = (Hover)target;
 
             if (!Camera.main.orthographic) {
                 GUI.color = Color.orangeRed;
-                EditorGUILayout.LabelField("Main camera is not orthographic, button will not work.");
+                EditorGUILayout.LabelField("Main camera is not orthographic, hover will not work.");
                 EditorGUILayout.Space();
             }
 
@@ -21,13 +21,6 @@ namespace FD.AdventureToolkit.Editor {
             if (coll == null) {
                 GUI.color = Color.red;
                 EditorGUILayout.LabelField("There must be Collider2D component on this GameObject");
-                EditorGUILayout.Space();
-            }
-
-            var hover = sp.GetComponent<Hover>();
-            if (hover == null) {
-                GUI.color = Color.red;
-                EditorGUILayout.LabelField("There must be Hover component on this GameObject");
                 EditorGUILayout.Space();
             }
 

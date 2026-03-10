@@ -3,14 +3,18 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace FD.AdventureToolkit {
+
+    [RequireComponent(typeof(Hover))]
     public class Button : MonoBehaviour {
         public InputAction clickAction = new InputAction(binding: "<Mouse>/leftButton");
         public UnityEvent onClick;
 
-
+        Hover hover;
         int enabledFrame;
+
         void Awake() {
             clickAction.started += ClickResponse;
+            hover = GetComponent<Hover>();
         }
 
         private void OnEnable() {
@@ -29,16 +33,9 @@ namespace FD.AdventureToolkit {
             // Position Check
             Vector2 mousePos = Mouse.current.position.ReadValue();
             Vector3 mousePosWS = Camera.main.ScreenToWorldPoint(mousePos);
-            Collider2D coll = GetComponent<Collider2D>();
-            if (coll != null) {
-
-                if (coll.OverlapPoint(mousePosWS)) {
-                    onClick.Invoke();
-                }
-            } else {
-                Debug.LogWarning("No Collider2D on this button " + name);
+            if (hover.on) {
+                onClick.Invoke();
             }
         }
-
     }
 }
