@@ -11,27 +11,27 @@ namespace FD.AdventureToolkit.Editor {
         public override void OnInspectorGUI() {
             var sp = (Button)target;
 
-            if (!Camera.main.orthographic) {
-                GUI.color = Color.orangeRed;
-                EditorGUILayout.LabelField("Main camera is not orthographic, button will not work.");
-                EditorGUILayout.Space();
-            }
+
 
             var coll = sp.GetComponent<Collider2D>();
-            if (coll == null) {
-                GUI.color = Color.red;
-                EditorGUILayout.LabelField("There must be Collider2D component on this GameObject");
-                EditorGUILayout.Space();
-            }
+            EditorUtils.EditorError(
+                coll == null,
+                "There must be Collider2D component on this GameObject");
 
             var hover = sp.GetComponent<Hover>();
-            if (hover == null) {
-                GUI.color = Color.red;
-                EditorGUILayout.LabelField("There must be Hover component on this GameObject");
-                EditorGUILayout.Space();
-            }
+            EditorUtils.EditorError(
+                coll == null,
+                "There must be Hover component on this GameObject");
 
-            GUI.color = Color.white;
+            EditorUtils.EditorWarning(
+                Camera.main == null,
+                "Main camera is not set, button will not work.");
+
+            if (Camera.main != null) {
+                EditorUtils.EditorWarning(
+                    !Camera.main.orthographic,
+                    "Main camera is not orthographic, button will not work.");
+            }
 
             base.OnInspectorGUI();
         }
