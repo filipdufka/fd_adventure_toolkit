@@ -12,7 +12,9 @@ namespace FD.AdventureToolkit {
         Hover hover;
         int enabledFrame;
 
-        void Awake() {
+        void Awake() => Init();
+
+        protected virtual void Init() {
             clickAction.started += ClickResponse;
             hover = GetComponent<Hover>();
         }

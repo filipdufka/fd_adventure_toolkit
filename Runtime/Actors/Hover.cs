@@ -8,7 +8,9 @@ namespace FD.AdventureToolkit {
 
         Collider2D coll;
 
-        private void Awake() {
+        private void Awake() => Init();
+
+        protected virtual void Init() {
             coll = GetComponent<Collider2D>();
         }
 
