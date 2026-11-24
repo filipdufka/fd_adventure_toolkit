@@ -10,21 +10,24 @@ namespace FD.AdventureToolkit {
         public UnityEvent whenOn;
         public UnityEvent whenOff;
 
-        private void Start() {
+        protected virtual void Awake() {
             on = !defaultState; // Forcing Change
             Set(defaultState);
         }
 
-        public void Set(bool newSwitched) {
-            ChangeCheck(newSwitched);
+        protected virtual void Start() { }
+
+        public virtual void Set(bool newSwitched) {
+            bool old = on;
             on = newSwitched;
+            ChangeCheck(newSwitched, old);
             RepaintEditor();
         }
 
-        public void Toggle() => Set(!on);
+        public virtual void Toggle() => Set(!on);
 
-        void ChangeCheck(bool newState) {
-            if (newState != on) {
+        protected void ChangeCheck(bool newState, bool oldState) {
+            if (newState != oldState) {
                 if (newState) {
                     whenOn.Invoke();
                 } else {
@@ -33,7 +36,7 @@ namespace FD.AdventureToolkit {
             }
         }
 
-        void RepaintEditor() {
+        protected void RepaintEditor() {
 #if UNITY_EDITOR
             Editor.CreateEditor(this).Repaint();
 #endif

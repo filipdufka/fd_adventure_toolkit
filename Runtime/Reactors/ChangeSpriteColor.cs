@@ -10,6 +10,9 @@ namespace FD.AdventureToolkit {
         }
 
         public void SetColor(int colorIndex) {
+            if (sp == null) {
+                return;
+            }
             sp.color = colorList[colorIndex];
         }
     }
